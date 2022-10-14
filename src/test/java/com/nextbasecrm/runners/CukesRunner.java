@@ -17,9 +17,9 @@ import org.junit.runner.RunWith;
 
         },
         features = "src/test/resources/features",
-        glue = "com/cydeo/step_definitions",
+        glue = "com/nextbasecrm/step_definitions",
         dryRun = false,  // browser will open when false
-        tags = "@scientists",
+        tags = "@wip",
         publish = true
 )
 public class CukesRunner {
