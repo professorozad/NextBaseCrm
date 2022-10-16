@@ -11,8 +11,6 @@ public class NextBaseCrmLoginPage {
         PageFactory.initElements(Driver.getDriver(),this);
     }
 
-    @FindBy(id = "user-name")
-    public WebElement idName;
 
     @FindBy(linkText = "Login")
     public WebElement loginLink;

@@ -34,6 +34,9 @@ public class NextBaseCrmHomePage {
     @FindBy(xpath = "//button[contains(@id, 'submit_blog')]")
     public WebElement sendCommentButton;
 
+    @FindBy(id = "user-name")
+    public WebElement idName;
+
 
 
 }
