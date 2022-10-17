@@ -46,6 +46,8 @@ public class NextBaseCrm_MessageAndComment_StepDefs {
     }
     @Then("user clicks the send button")
     public void user_clicks_the_send_button() {
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(),5);
+        wait.until(ExpectedConditions.elementToBeClickable(nextBaseCrmHomePage.sendMessageButton));
         nextBaseCrmHomePage.sendMessageButton.click();
     }
 
