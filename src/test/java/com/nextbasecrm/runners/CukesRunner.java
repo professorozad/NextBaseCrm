@@ -19,7 +19,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         glue = "com/nextbasecrm/step_definitions",
         dryRun = false,  // browser will open when false
-        tags = "@login",
+        tags = "",
         publish = true
 )
 public class CukesRunner {
