@@ -1,4 +1,4 @@
-@smoke
+@login
 Feature:NextBaseCrm app login feature
   User Story:
   As a user, I should be able to login with correct credentials to different account.
@@ -15,7 +15,6 @@ Feature:NextBaseCrm app login feature
   hr3@cybertekschool.com
 
 
-  @login
   Scenario Outline: : Login for different employees
     Given user is on the login page
     When user enters "<username>","<password>"
