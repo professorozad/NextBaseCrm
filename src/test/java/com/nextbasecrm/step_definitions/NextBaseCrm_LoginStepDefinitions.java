@@ -5,15 +5,12 @@ import com.nextbasecrm.pages.NextBaseCrmHomePage;
 import com.nextbasecrm.pages.NextBaseCrmLoginPage;
 import com.nextbasecrm.utilities.ConfigurationReader;
 import com.nextbasecrm.utilities.Driver;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class NextBaseCrm_StepDefinitions {
+public class NextBaseCrm_LoginStepDefinitions {
 
     NextBaseCrmLoginPage nextBaseCrmLoginPage = new NextBaseCrmLoginPage();
 
@@ -41,6 +38,8 @@ public class NextBaseCrm_StepDefinitions {
         Assert.assertTrue(nextBaseCrmHomePage.idName.isDisplayed());
         System.out.println("username = " + nextBaseCrmHomePage.idName.getText());
     }
+
+
 
 
 
