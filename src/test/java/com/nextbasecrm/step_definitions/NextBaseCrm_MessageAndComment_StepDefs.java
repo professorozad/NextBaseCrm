@@ -21,7 +21,7 @@ public class NextBaseCrm_MessageAndComment_StepDefs {
 
     Faker faker = new Faker();
 
-    @Given("user navigates to nextBaseCrm home page with valid credentials ")
+    @Given("user navigates to nextBaseCrm home page with valid credentials")
     public void user_is_on_the_nextBaseCrm_home_page() {
         Driver.getDriver().get(ConfigurationReader.getProperty("env"));
         nextBaseCrmLoginPage.loginLink.click();
