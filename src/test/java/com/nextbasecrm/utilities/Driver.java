@@ -5,8 +5,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 public class Driver {
@@ -47,6 +50,31 @@ public class Driver {
             switch statement will determine the case, and open the matching browser
              */
             switch (browserType){
+                case "remote-chrome":
+                    try {
+                        // assign your grid server address
+                        String gridAddress = "52.91.210.69";
+                        URL url = new URL("http://" + gridAddress + ":4444/wd/hub");
+                        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+                        desiredCapabilities.setBrowserName("chrome");
+                        driverPool.set(new RemoteWebDriver(url, desiredCapabilities));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case "remote-firefox":
+
+                    try {
+                        // assign your grid server address
+                        String gridAddress = "52.90.101.17";
+                        URL url = new URL("http://" + gridAddress + ":4444/wd/hub");
+                        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+                        desiredCapabilities.setBrowserName("firefox");
+                        driverPool.set(new RemoteWebDriver(url, desiredCapabilities));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    break;
                 case "chrome" :
                     WebDriverManager.chromedriver().setup();
                     driverPool.set(new ChromeDriver());
