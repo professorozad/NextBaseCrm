@@ -22,7 +22,7 @@ public class NextBaseCrm_LoginStepDefinitions {
     @Given("user is on the login page")
     public void user_is_on_the_login_page() {
         Driver.getDriver().get(ConfigurationReader.getProperty("env"));
-        nextBaseCrmLoginPage.loginLink.click();
+        //nextBaseCrmLoginPage.loginLink.click();
     }
     @When("user enters {string},{string}")
     public void user_enters(String email, String password) {
