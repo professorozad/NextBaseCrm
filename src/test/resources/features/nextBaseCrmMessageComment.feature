@@ -1,4 +1,4 @@
-@smoke
+@regression
 Feature: NextBaseCrm app message feature
   User Story
   As a user, I should be able to send messages by clicking on Message tab under Active Stream.
