@@ -45,15 +45,16 @@ public class NextBaseCrm_MessageAndComment_StepDefs {
     @And("user writes and send the message")
     public void userWritesAndSendTheMessage() {
         //BrowserUtils.sleep(2);
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(),5);
-        wait.until(ExpectedConditions.visibilityOfElementLocated((By) nextBaseCrmHomePage.iframe));
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(),10);
+        wait.until(ExpectedConditions.visibilityOf(nextBaseCrmHomePage.iframe));
+
         Driver.getDriver().switchTo().frame(nextBaseCrmHomePage.iframe);
 
         nextBaseCrmHomePage.writeMessageBox.sendKeys(faker.chuckNorris().fact());
 
         Driver.getDriver().switchTo().parentFrame();
 
-        WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(),5);
+        WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(),10);
         wait2.until(ExpectedConditions.elementToBeClickable(nextBaseCrmHomePage.sendMessageButton));
         nextBaseCrmHomePage.sendMessageButton.click();
 
@@ -74,15 +75,19 @@ public class NextBaseCrm_MessageAndComment_StepDefs {
     }
     @When("user writes the comment")
     public void user_writes_the_comment() {
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(),10);
+        wait.until(ExpectedConditions.visibilityOf(nextBaseCrmHomePage.iframe));
         Driver.getDriver().switchTo().frame(nextBaseCrmHomePage.iframe);
+
         nextBaseCrmHomePage.writeCommentBox.sendKeys(faker.chuckNorris().fact());
 
     }
     @Then("user clicks the send comment button")
     public void user_clicks_the_send_comment_button() {
         Driver.getDriver().switchTo().parentFrame();
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(),5);
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(),10);
         wait.until(ExpectedConditions.elementToBeClickable(nextBaseCrmHomePage.sendCommentButton));
+
         nextBaseCrmHomePage.sendCommentButton.click();
     }
 
