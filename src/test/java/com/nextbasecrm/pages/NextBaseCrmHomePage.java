@@ -11,6 +11,8 @@ public class NextBaseCrmHomePage {
         PageFactory.initElements(Driver.getDriver(),this);
     }
 
+    @FindBy(id = "bx-b-uploadfile-blogPostForm")
+    public WebElement uploadFile;
     @FindBy(xpath = "//span[@class='feed-add-post-micro-title']")
     public WebElement sendMessageInputBox;
 

@@ -6,6 +6,7 @@ import com.nextbasecrm.pages.NextBaseCrmLoginPage;
 import com.nextbasecrm.utilities.BrowserUtils;
 import com.nextbasecrm.utilities.ConfigurationReader;
 import com.nextbasecrm.utilities.Driver;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -30,8 +31,7 @@ public class NextBaseCrm_MessageAndComment_StepDefs {
         nextBaseCrmLoginPage.userNameInput.sendKeys("helpdesk1@cybertekschool.com");
         nextBaseCrmLoginPage.passwordInput.sendKeys("UserUser");
         nextBaseCrmLoginPage.loginButton.click();
-        Assert.assertTrue(nextBaseCrmHomePage.idName.isDisplayed());
-        System.out.println("username = " + nextBaseCrmHomePage.idName.getText());
+
     }
 
 
@@ -40,21 +40,31 @@ public class NextBaseCrm_MessageAndComment_StepDefs {
         nextBaseCrmHomePage.sendMessageInputBox.click();
 
     }
-    @When("user writes the message")
-    public void user_writes_the_message() {
-        BrowserUtils.sleep(2);
+
+
+    @And("user writes and send the message")
+    public void userWritesAndSendTheMessage() {
+        //BrowserUtils.sleep(2);
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(),5);
+        wait.until(ExpectedConditions.visibilityOfElementLocated((By) nextBaseCrmHomePage.iframe));
         Driver.getDriver().switchTo().frame(nextBaseCrmHomePage.iframe);
 
-        BrowserUtils.sleep(2);
         nextBaseCrmHomePage.writeMessageBox.sendKeys(faker.chuckNorris().fact());
+
         Driver.getDriver().switchTo().parentFrame();
-    }
-    @Then("user clicks the send button")
-    public void user_clicks_the_send_button() {
-       // WebDriverWait wait = new WebDriverWait(Driver.getDriver(),5);
-       // wait.until(ExpectedConditions.elementToBeClickable(nextBaseCrmHomePage.sendMessageButton));
+
+        WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(),5);
+        wait2.until(ExpectedConditions.elementToBeClickable(nextBaseCrmHomePage.sendMessageButton));
         nextBaseCrmHomePage.sendMessageButton.click();
+
     }
+
+    @Then("user check username")
+    public void userCheckUsername() {
+        Assert.assertTrue(nextBaseCrmHomePage.idName.isDisplayed());
+        System.out.println("username = " + nextBaseCrmHomePage.idName.getText());
+    }
+
 
 
 
@@ -66,14 +76,16 @@ public class NextBaseCrm_MessageAndComment_StepDefs {
     public void user_writes_the_comment() {
         Driver.getDriver().switchTo().frame(nextBaseCrmHomePage.iframe);
         nextBaseCrmHomePage.writeCommentBox.sendKeys(faker.chuckNorris().fact());
-        Driver.getDriver().switchTo().parentFrame();
+
     }
     @Then("user clicks the send comment button")
     public void user_clicks_the_send_comment_button() {
+        Driver.getDriver().switchTo().parentFrame();
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(),5);
         wait.until(ExpectedConditions.elementToBeClickable(nextBaseCrmHomePage.sendCommentButton));
         nextBaseCrmHomePage.sendCommentButton.click();
     }
+
 
 
 }

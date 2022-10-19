@@ -9,8 +9,8 @@ Feature: NextBaseCrm app message feature
 
   Scenario: Send message to all employees
     When user clicks the send message input box
-    And user writes the message
-    Then user clicks the send button
+    And user writes and send the message
+    Then user check username
 
 
   Scenario: Comment for first sent message
