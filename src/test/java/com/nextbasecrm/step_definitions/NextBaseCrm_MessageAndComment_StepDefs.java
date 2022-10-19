@@ -71,6 +71,9 @@ public class NextBaseCrm_MessageAndComment_StepDefs {
 
     @When("user clicks first message's comment input box")
     public void user_clicks_first_message_s_comment_input_box() {
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(),10);
+        wait.until(ExpectedConditions.visibilityOf(nextBaseCrmHomePage.getCommentBox));
+
         nextBaseCrmHomePage.getCommentBox.click();
     }
     @When("user writes the comment")
