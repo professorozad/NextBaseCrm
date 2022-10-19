@@ -17,7 +17,7 @@ public class NextBaseCrmHomePage {
     @FindBy(xpath = "//iframe[@class='bx-editor-iframe']")
     public WebElement iframe;
 
-    @FindBy(xpath = "//body[@style='min-height: 150px;']")
+    @FindBy(xpath = "//body[@style='min-height: 184px;']")
     public WebElement writeMessageBox;
 
     @FindBy(xpath = "//button[@id='blog-submit-button-save']")
@@ -28,7 +28,7 @@ public class NextBaseCrmHomePage {
     public WebElement getCommentBox;
 
 
-    @FindBy(xpath = "//body[@style='min-height: 50px;']")
+    @FindBy(xpath = "//body[@style='min-height: 84px;']")
     public WebElement writeCommentBox;
 
     @FindBy(xpath = "//button[contains(@id, 'submit_blog')]")

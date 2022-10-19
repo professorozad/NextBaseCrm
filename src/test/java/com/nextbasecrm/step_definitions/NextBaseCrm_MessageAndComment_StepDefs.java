@@ -3,12 +3,14 @@ package com.nextbasecrm.step_definitions;
 import com.github.javafaker.Faker;
 import com.nextbasecrm.pages.NextBaseCrmHomePage;
 import com.nextbasecrm.pages.NextBaseCrmLoginPage;
+import com.nextbasecrm.utilities.BrowserUtils;
 import com.nextbasecrm.utilities.ConfigurationReader;
 import com.nextbasecrm.utilities.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -24,7 +26,7 @@ public class NextBaseCrm_MessageAndComment_StepDefs {
     @Given("user navigates to nextBaseCrm home page with valid credentials")
     public void user_is_on_the_nextBaseCrm_home_page() {
         Driver.getDriver().get(ConfigurationReader.getProperty("env"));
-        nextBaseCrmLoginPage.loginLink.click();
+        //nextBaseCrmLoginPage.loginLink.click();
         nextBaseCrmLoginPage.userNameInput.sendKeys("helpdesk1@cybertekschool.com");
         nextBaseCrmLoginPage.passwordInput.sendKeys("UserUser");
         nextBaseCrmLoginPage.loginButton.click();
@@ -40,14 +42,17 @@ public class NextBaseCrm_MessageAndComment_StepDefs {
     }
     @When("user writes the message")
     public void user_writes_the_message() {
+        BrowserUtils.sleep(2);
         Driver.getDriver().switchTo().frame(nextBaseCrmHomePage.iframe);
+
+        BrowserUtils.sleep(2);
         nextBaseCrmHomePage.writeMessageBox.sendKeys(faker.chuckNorris().fact());
         Driver.getDriver().switchTo().parentFrame();
     }
     @Then("user clicks the send button")
     public void user_clicks_the_send_button() {
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(),5);
-        wait.until(ExpectedConditions.elementToBeClickable(nextBaseCrmHomePage.sendMessageButton));
+       // WebDriverWait wait = new WebDriverWait(Driver.getDriver(),5);
+       // wait.until(ExpectedConditions.elementToBeClickable(nextBaseCrmHomePage.sendMessageButton));
         nextBaseCrmHomePage.sendMessageButton.click();
     }
 

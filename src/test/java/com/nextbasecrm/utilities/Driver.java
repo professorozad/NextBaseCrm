@@ -36,7 +36,6 @@ public class Driver {
      */
     public static WebDriver getDriver(){
 
-        if (driverPool.get() == null ){
 
             /*
             We read our browserType from configuration.properties.
@@ -44,6 +43,17 @@ public class Driver {
              */
 
             String browserType = ConfigurationReader.getProperty("browser");
+
+
+        if (System.getProperty("BROWSER") == null) {
+            browserType = ConfigurationReader.getProperty("browser");
+        } else {
+            browserType = System.getProperty("BROWSER");
+        }
+        System.out.println("Browser: " + browserType);
+
+
+        if (driverPool.get() == null ){
 
             /*
             Depending on the browsingType that will be return from configuration.properties file
@@ -53,26 +63,28 @@ public class Driver {
                 case "remote-chrome":
                     try {
                         // assign your grid server address
-                        String gridAddress = "52.91.210.69";
+                        String gridAddress = ConfigurationReader.getProperty("gridAddressChrome");
                         URL url = new URL("http://" + gridAddress + ":4444/wd/hub");
                         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
                         desiredCapabilities.setBrowserName("chrome");
                         driverPool.set(new RemoteWebDriver(url, desiredCapabilities));
                     } catch (Exception e) {
                         e.printStackTrace();
+                        throw new RuntimeException("Failed to create remote session");
                     }
                     break;
                 case "remote-firefox":
 
                     try {
                         // assign your grid server address
-                        String gridAddress = "52.90.101.17";
+                        String gridAddress = ConfigurationReader.getProperty("gridAddressFirefox");
                         URL url = new URL("http://" + gridAddress + ":4444/wd/hub");
                         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
                         desiredCapabilities.setBrowserName("firefox");
                         driverPool.set(new RemoteWebDriver(url, desiredCapabilities));
                     } catch (Exception e) {
                         e.printStackTrace();
+                        throw new RuntimeException("Failed to create remote session");
                     }
                     break;
                 case "chrome" :
