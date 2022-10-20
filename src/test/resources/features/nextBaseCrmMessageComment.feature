@@ -12,7 +12,7 @@ Feature: NextBaseCrm app message feature
     And user writes and send the message
     Then user check username
 
-
+@comment
   Scenario: Comment for first sent message
     When user clicks first message's comment input box
     And user writes the comment
